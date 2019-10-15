@@ -9,10 +9,10 @@ import {
 
 /*
 React Final form expects a validator to return null or undefined
-when  a given validation succeeds, adaptor to fulfill this 
+when  a given validation succeeds, adaptor to fulfill this
 requirement.
  */
-export class FinalFormValidation {
+class FinalFormValidation {
   formValidation: FormValidationExtended.FormValidation = null;
 
   constructor(validationSchema: ValidationSchema) {
