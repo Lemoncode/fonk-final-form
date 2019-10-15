@@ -1,1 +1,3 @@
-console.log('fonk-final-form');
+import { createFinalFormValidation } from './final-form-validation';
+
+export { createFinalFormValidation };
