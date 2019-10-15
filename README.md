@@ -1,8 +1,8 @@
 # Fonk-final-form
 
-[![CircleCI](https://badgen.net/github/status/Lemoncode/fonk/master/ci?icon=circleci&label=circleci)](https://circleci.com/gh/Lemoncode/fonk/tree/master)
-[![NPM Version](https://badgen.net/npm/v/@lemoncode/fonk?icon=npm&label=npm)](https://www.npmjs.com/package/@lemoncode/fonk)
-[![bundle-size](https://badgen.net/bundlephobia/min/@lemoncode/fonk)](https://bundlephobia.com/result?p=@lemoncode/fonk)
+[![CircleCI](https://badgen.net/github/status/Lemoncode/fonk-final-form/master/ci?icon=circleci&label=circleci)](https://circleci.com/gh/Lemoncode/fonk-final-form/tree/master)
+[![NPM Version](https://badgen.net/npm/v/@lemoncode/fonk-final-form?icon=npm&label=npm)](https://www.npmjs.com/package/@lemoncode/fonk-final-form)
+[![bundle-size](https://badgen.net/bundlephobia/min/@lemoncode/fonk-final-form)](https://bundlephobia.com/result?p=@lemoncode/fonk-final-form)
 
 This package serves as the entry point to the React Final Form library. It is intended to be paired with the generic Fonk package, which is shipped as to npm.
 
