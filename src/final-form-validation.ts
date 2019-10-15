@@ -7,10 +7,13 @@ import {
   createFormValidation,
 } from '@lemoncode/fonk';
 
-const { FormValidation } = FormValidationExtended;
-
+/*
+React Final form expects a validator to return null or undefined
+when  a given validation succeeds, adaptor to fulfill this 
+requirement.
+ */
 export class FinalFormValidation {
-  formValidation: FormValidation = null;
+  formValidation: FormValidationExtended.FormValidation = null;
 
   constructor(validationSchema: ValidationSchema) {
     this.formValidation = createFormValidation(validationSchema);
@@ -37,12 +40,11 @@ export class FinalFormValidation {
   }
 
   public validateForm(values: any): Promise<FormValidationResult> {
-    // TODO handle then here, if succeeded just return a undefined or null
-    return this.formValidation.validateForm(
-      values,
-      formValidation.fieldSchema,
-      formValidation.recordSchema
-    );
+    return this.formValidation
+      .validateForm(values)
+      .then(validationResult =>
+        !validationResult.succeeded ? validationResult : null
+      );
   }
 }
 
