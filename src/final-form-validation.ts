@@ -12,7 +12,7 @@ React Final form expects a validator to return null or undefined
 when  a given validation succeeds, adaptor to fulfill this
 requirement.
  */
-class FinalFormValidation {
+export class FinalFormValidation {
   formValidation: FormValidationExtended.FormValidation = null;
 
   constructor(validationSchema: ValidationSchema) {
