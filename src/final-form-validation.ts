@@ -39,15 +39,12 @@ export class FinalFormValidation {
       );
   }
 
-  public validateForm(values: any): Promise<any> {
-    return this.formValidation.validateForm(values).then(validationResult =>
-      !validationResult.succeeded
-        ? {
-            ...validationResult.fieldErrors,
-            recordErrors: validationResult.recordErrors,
-          }
-        : null
-    );
+  public validateForm(values: any): Promise<FormValidationResult> {
+    return this.formValidation
+      .validateForm(values)
+      .then(validationResult =>
+        !validationResult.succeeded ? validationResult : null
+      );
   }
 }
 
