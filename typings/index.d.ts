@@ -27,5 +27,5 @@ interface FinalFormValidation {
 
   validateRecord: (values: any) => Promise<RecordValidationResult>;
 
-  validateForm: (values: any) => Promise<FormValidationResult>;
+  validateForm: (values: any) => Promise<any>;
 }

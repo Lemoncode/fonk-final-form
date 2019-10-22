@@ -3,15 +3,14 @@ import {
   ValidationResult,
   ValidationSchema,
   RecordValidationResult,
-  FormValidationResult,
   createFormValidation,
 } from '@lemoncode/fonk';
 
 /*
-React Final form expects a validator to return null or undefined
-when  a given validation succeeds, adaptor to fulfill this
-requirement.
- */
+  React Final form expects a validator to return null or undefined
+  when  a given validation succeeds, adaptor to fulfill this
+  requirement.
+   */
 export class FinalFormValidation {
   formValidation: FormValidationExtended.FormValidation = null;
 
@@ -39,12 +38,15 @@ export class FinalFormValidation {
       );
   }
 
-  public validateForm(values: any): Promise<FormValidationResult> {
-    return this.formValidation
-      .validateForm(values)
-      .then(validationResult =>
-        !validationResult.succeeded ? validationResult : null
-      );
+  public validateForm(values: any): Promise<any> {
+    return this.formValidation.validateForm(values).then(validationResult =>
+      !validationResult.succeeded
+        ? {
+            ...validationResult.fieldErrors,
+            recordErrors: validationResult.recordErrors,
+          }
+        : null
+    );
   }
 }
 
