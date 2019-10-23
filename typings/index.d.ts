@@ -16,7 +16,9 @@ export function createFinalFormValidation(
 interface FinalFormValidation {
   validateField: (fieldId: string, value: any, values?: any) => Promise<string>;
 
-  validateRecord: (values: any) => Promise<Record<string, string>>;
+  validateRecord: (
+    values: any
+  ) => Promise<{ recordErrors: Record<string, string> }>;
 
   validateForm: (
     values: any

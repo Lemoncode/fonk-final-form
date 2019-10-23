@@ -40,14 +40,18 @@ export class FinalFormValidation {
       );
   }
 
-  public validateRecord(values: any): Promise<Record<string, string>> {
-    return this.formValidation
-      .validateRecord(values)
-      .then(validationResult =>
-        !validationResult.succeeded
-          ? this.flatErrorsToMessages(validationResult.recordErrors)
-          : null
-      );
+  public validateRecord(
+    values: any
+  ): Promise<{ recordErrors: Record<string, string> }> {
+    return this.formValidation.validateRecord(values).then(validationResult =>
+      !validationResult.succeeded
+        ? {
+            recordErrors: {
+              ...this.flatErrorsToMessages(validationResult.recordErrors),
+            },
+          }
+        : null
+    );
   }
 
   public validateForm(

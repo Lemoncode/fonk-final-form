@@ -488,7 +488,9 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
-          MY_RECORD_VALIDATION: 'mymessageA',
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'mymessageA',
+          },
         });
         done();
       });
@@ -520,7 +522,9 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
-          MY_RECORD_VALIDATION: 'mymessageA',
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'mymessageA',
+          },
         });
         done();
       });
@@ -555,7 +559,9 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(validationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
-          MY_RECORD_VALIDATION: 'My custom message',
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'My custom message',
+          },
         });
         done();
       });
@@ -589,7 +595,9 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(validationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
-          MY_RECORD_VALIDATION: 'My custom message',
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'My custom message',
+          },
         });
         done();
       });
@@ -630,7 +638,9 @@ describe('FormValidation', () => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).not.toHaveBeenCalled();
         expect(validationResult).toEqual({
-          MY_RECORD_VALIDATION: 'mymessageA',
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'mymessageA',
+          },
         });
         done();
       });
@@ -671,7 +681,9 @@ describe('FormValidation', () => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).toHaveBeenCalled();
         expect(validationResult).toEqual({
-          MY_RECORD_VALIDATION: 'mymessageB',
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'mymessageB',
+          },
         });
         done();
       });
@@ -712,7 +724,9 @@ describe('FormValidation', () => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).not.toHaveBeenCalled();
         expect(validationResult).toEqual({
-          MY_RECORD_VALIDATION: 'mymessageA',
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'mymessageA',
+          },
         });
         done();
       });
@@ -793,8 +807,10 @@ describe('FormValidation', () => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).toHaveBeenCalled();
         expect(validationResult).toEqual({
-          MY_RECORD_VALIDATION1: 'mymessageA',
-          MY_RECORD_VALIDATION2: 'mymessageB',
+          recordErrors: {
+            MY_RECORD_VALIDATION1: 'mymessageA',
+            MY_RECORD_VALIDATION2: 'mymessageB',
+          },
         });
         done();
       });
