@@ -44,9 +44,7 @@ describe('FormValidation', () => {
       const result = formValidation.validateField('username', 'whatever'); // Assert
 
       result.then(validationResult => {
-        expect(validationResult.succeeded).toBe(false);
-        expect(validationResult.type).toBe('MY_TYPE');
-        expect(validationResult.message).toBe('mymessage');
+        expect(validationResult).toBe('mymessage');
         expect(mockValidationFn).toHaveBeenCalled();
         done();
       });
@@ -73,9 +71,7 @@ describe('FormValidation', () => {
       const result = formValidation.validateField('username', 'whatever'); // Assert
 
       result.then(validationResult => {
-        expect(validationResult.succeeded).toBe(false);
-        expect(validationResult.type).toBe('MY_TYPE');
-        expect(validationResult.message).toBe('mymessage');
+        expect(validationResult).toBe('mymessage');
         expect(mockValidationFn).toHaveBeenCalled();
         done();
       });
@@ -109,9 +105,7 @@ describe('FormValidation', () => {
       const result = formValidation.validateField('username', 'whatever'); // Assert
 
       result.then(validationResult => {
-        expect(validationResult.succeeded).toBe(false);
-        expect(validationResult.type).toBe('MY_TYPE');
-        expect(validationResult.message).toBe('myoverriddenmessage');
+        expect(validationResult).toBe('myoverriddenmessage');
         expect(mockValidationFn).toHaveBeenCalled();
         done();
       });
@@ -146,9 +140,7 @@ describe('FormValidation', () => {
       const result = formValidation.validateField('username', 'whatever'); // Assert
 
       result.then(validationResult => {
-        expect(validationResult.succeeded).toBe(false);
-        expect(validationResult.type).toBe('MY_TYPE');
-        expect(validationResult.message).toBe('myoverriddenmessage');
+        expect(validationResult).toBe('myoverriddenmessage');
         expect(mockValidationFn).toHaveBeenCalled();
         done();
       });
@@ -187,9 +179,7 @@ describe('FormValidation', () => {
       ); // Assert
 
       result.then(validationResult => {
-        expect(validationResult.succeeded).toBe(false);
-        expect(validationResult.type).toBe('MY_TYPE');
-        expect(validationResult.message).toBe(
+        expect(validationResult).toBe(
           'whatever myoverriddenmessage custom-arg test-values'
         );
         expect(mockValidationFn).toHaveBeenCalled();
@@ -234,9 +224,7 @@ describe('FormValidation', () => {
       const result = formValidation.validateField('username', 'whatever'); // Assert
 
       result.then(validationResult => {
-        expect(validationResult.succeeded).toBe(false);
-        expect(validationResult.type).toBe('MY_TYPE');
-        expect(validationResult.message).toBe('received custom args fail true');
+        expect(validationResult).toBe('received custom args fail true');
         expect(validator).toHaveBeenCalled();
         done();
       });
@@ -279,7 +267,7 @@ describe('FormValidation', () => {
       const result = formValidation.validateField('username', 'whatever'); // Assert
 
       result.then(validationResult => {
-        expect(validationResult).toBe(null);
+        expect(validationResult).toBeNull();
         expect(validator).toHaveBeenCalled();
         done();
       });
@@ -311,7 +299,7 @@ describe('FormValidation', () => {
       const result = formValidation.validateField('username', 'whatever'); // Assert
 
       result.then(validationResult => {
-        expect(validationResult).toBe(null);
+        expect(validationResult).toBeNull();
         expect(mockValidationFn1).toHaveBeenCalled();
         expect(mockValidationFn2).toHaveBeenCalled();
         done();
@@ -344,8 +332,7 @@ describe('FormValidation', () => {
       const result = formValidation.validateField('username', 'whatever'); // Assert
 
       result.then(validationResult => {
-        expect(validationResult.succeeded).toBe(false);
-        expect(validationResult.type).toBe('MY_VALIDATOR_A');
+        expect(validationResult).toBe('mymessageA');
         expect(mockValidationFn1).toHaveBeenCalled();
         expect(mockValidationFn2).not.toHaveBeenCalled();
         done();
@@ -378,8 +365,7 @@ describe('FormValidation', () => {
       const result = formValidation.validateField('username', 'whatever'); // Assert
 
       result.then(validationResult => {
-        expect(validationResult.succeeded).toBe(false);
-        expect(validationResult.type).toBe('MY_VALIDATOR_B');
+        expect(validationResult).toBe('mymessageB');
         expect(mockValidationFn1).toHaveBeenCalled();
         expect(mockValidationFn2).toHaveBeenCalled();
         done();
@@ -412,8 +398,7 @@ describe('FormValidation', () => {
       const result = formValidation.validateField('username', 'whatever'); // Assert
 
       result.then(validationResult => {
-        expect(validationResult.succeeded).toBe(false);
-        expect(validationResult.type).toBe('MY_VALIDATOR_A');
+        expect(validationResult).toBe('mymessageA');
         expect(mockValidationFn1).toHaveBeenCalled();
         expect(mockValidationFn2).not.toHaveBeenCalled();
         done();
@@ -440,8 +425,7 @@ describe('FormValidation', () => {
       const result = formValidation.validateField('nested.field', 'whatever'); // Assert
 
       result.then(validationResult => {
-        expect(validationResult.succeeded).toBe(false);
-        expect(validationResult.type).toBe('MY_VALIDATOR_A');
+        expect(validationResult).toBe('mymessageA');
         expect(mockValidationFn).toHaveBeenCalled();
         done();
       });
@@ -470,8 +454,7 @@ describe('FormValidation', () => {
       ); // Assert
 
       result.then(validationResult => {
-        expect(validationResult.succeeded).toBe(false);
-        expect(validationResult.type).toBe('MY_VALIDATOR_A');
+        expect(validationResult).toBe('mymessageA');
         expect(mockValidationFn).toHaveBeenCalled();
         done();
       });
@@ -504,13 +487,8 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageA',
-          },
+        expect(validationResult).toEqual({
+          MY_RECORD_VALIDATION: 'mymessageA',
         });
         done();
       });
@@ -541,13 +519,8 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageA',
-          },
+        expect(validationResult).toEqual({
+          MY_RECORD_VALIDATION: 'mymessageA',
         });
         done();
       });
@@ -581,13 +554,8 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(validationFn).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'My custom message',
-          },
+        expect(validationResult).toEqual({
+          MY_RECORD_VALIDATION: 'My custom message',
         });
         done();
       });
@@ -620,13 +588,8 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(validationFn).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'My custom message',
-          },
+        expect(validationResult).toEqual({
+          MY_RECORD_VALIDATION: 'My custom message',
         });
         done();
       });
@@ -666,13 +629,8 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).not.toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageA',
-          },
+        expect(validationResult).toEqual({
+          MY_RECORD_VALIDATION: 'mymessageA',
         });
         done();
       });
@@ -712,13 +670,8 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageB',
-          },
+        expect(validationResult).toEqual({
+          MY_RECORD_VALIDATION: 'mymessageB',
         });
         done();
       });
@@ -758,13 +711,8 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).not.toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageA',
-          },
+        expect(validationResult).toEqual({
+          MY_RECORD_VALIDATION: 'mymessageA',
         });
         done();
       });
@@ -804,7 +752,7 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).toHaveBeenCalled();
-        expect(validationResult).toBe(null);
+        expect(validationResult).toBeNull();
         done();
       });
     });
@@ -844,18 +792,9 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION1: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageA',
-          },
-          MY_RECORD_VALIDATION2: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageB',
-          },
+        expect(validationResult).toEqual({
+          MY_RECORD_VALIDATION1: 'mymessageA',
+          MY_RECORD_VALIDATION2: 'mymessageB',
         });
         done();
       });
@@ -888,12 +827,9 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageA',
+        expect(validationResult).toEqual({
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'mymessageA',
           },
         });
         done();
@@ -925,12 +861,9 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageA',
+        expect(validationResult).toEqual({
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'mymessageA',
           },
         });
         done();
@@ -965,12 +898,9 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(validationFn).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'My custom message',
+        expect(validationResult).toEqual({
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'My custom message',
           },
         });
         done();
@@ -1004,12 +934,9 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(validationFn).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'My custom message',
+        expect(validationResult).toEqual({
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'My custom message',
           },
         });
         done();
@@ -1050,12 +977,9 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).not.toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageA',
+        expect(validationResult).toEqual({
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'mymessageA',
           },
         });
         done();
@@ -1096,12 +1020,9 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageB',
+        expect(validationResult).toEqual({
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'mymessageB',
           },
         });
         done();
@@ -1142,12 +1063,9 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).not.toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageA',
+        expect(validationResult).toEqual({
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'mymessageA',
           },
         });
         done();
@@ -1228,17 +1146,10 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION1: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageA',
-          },
-          MY_RECORD_VALIDATION2: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageB',
+        expect(validationResult).toEqual({
+          recordErrors: {
+            MY_RECORD_VALIDATION1: 'mymessageA',
+            MY_RECORD_VALIDATION2: 'mymessageB',
           },
         });
         done();
@@ -1283,17 +1194,10 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(myFieldValidation).toHaveBeenCalled();
         expect(myRecordValidation).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.username).toEqual({
-          type: 'MY_TYPE',
-          succeeded: false,
-          message: 'mymessageA',
-        });
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageB',
+        expect(validationResult).toEqual({
+          username: 'mymessageA',
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'mymessageB',
           },
         });
         done();
@@ -1337,17 +1241,10 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(myFieldValidation).toHaveBeenCalled();
         expect(myRecordValidation).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.username).toEqual({
-          type: 'MY_TYPE',
-          succeeded: true,
-          message: 'mymessageA',
-        });
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: false,
-            message: 'mymessageB',
+        expect(validationResult).toEqual({
+          username: '',
+          recordErrors: {
+            MY_RECORD_VALIDATION: 'mymessageB',
           },
         });
         done();
@@ -1392,17 +1289,10 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(myFieldValidation).toHaveBeenCalled();
         expect(myRecordValidation).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.username).toEqual({
-          type: 'MY_TYPE',
-          succeeded: false,
-          message: 'mymessageA',
-        });
-        expect(validationResult.recordErrors).toEqual({
-          MY_RECORD_VALIDATION: {
-            type: '',
-            succeeded: true,
-            message: 'mymessageB',
+        expect(validationResult).toEqual({
+          username: 'mymessageA',
+          recordErrors: {
+            MY_RECORD_VALIDATION: '',
           },
         });
         done();
@@ -1487,7 +1377,7 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(myFieldValidation1).toHaveBeenCalled();
         expect(myFieldValidation2).toHaveBeenCalled();
-        expect(validationResult).toBe(null);
+        expect(validationResult).toBeNull();
         done();
       });
     });
@@ -1515,13 +1405,10 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.username).toEqual({
-          type: 'MY_TYPE',
-          succeeded: false,
-          message: 'mymessage',
+        expect(validationResult).toEqual({
+          username: 'mymessage',
+          recordErrors: {},
         });
-        expect(validationResult.recordErrors).toEqual({});
         done();
       });
     });
@@ -1549,13 +1436,10 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.username).toEqual({
-          type: 'MY_TYPE',
-          succeeded: false,
-          message: 'mymessage',
+        expect(validationResult).toEqual({
+          username: 'mymessage',
+          recordErrors: {},
         });
-        expect(validationResult.recordErrors).toEqual({});
         done();
       });
     });
@@ -1590,13 +1474,10 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.username).toEqual({
-          type: 'MY_TYPE',
-          succeeded: false,
-          message: 'myoverriddenmessage',
+        expect(validationResult).toEqual({
+          username: 'myoverriddenmessage',
+          recordErrors: {},
         });
-        expect(validationResult.recordErrors).toEqual({});
         done();
       });
     });
@@ -1632,13 +1513,10 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.username).toEqual({
-          type: 'MY_TYPE',
-          succeeded: false,
-          message: 'myoverriddenmessage',
+        expect(validationResult).toEqual({
+          username: 'myoverriddenmessage',
+          recordErrors: {},
         });
-        expect(validationResult.recordErrors).toEqual({});
         done();
       });
     });
@@ -1676,14 +1554,11 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.username).toEqual({
-          type: 'MY_TYPE',
-          succeeded: false,
-          message:
+        expect(validationResult).toEqual({
+          username:
             'whatever myoverriddenmessage custom-arg {"username":"whatever"}',
+          recordErrors: {},
         });
-        expect(validationResult.recordErrors).toEqual({});
         done();
       });
     });
@@ -1727,13 +1602,10 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.username).toEqual({
-          type: 'MY_TYPE',
-          succeeded: false,
-          message: 'received custom args fail true',
+        expect(validationResult).toEqual({
+          username: 'received custom args fail true',
+          recordErrors: {},
         });
-        expect(validationResult.recordErrors).toEqual({});
         done();
       });
     });
@@ -1777,7 +1649,7 @@ describe('FormValidation', () => {
 
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
-        expect(validationResult);
+        expect(validationResult).toBeNull();
         done();
       });
     });
@@ -1811,7 +1683,7 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(mockValidationFn1).toHaveBeenCalled();
         expect(mockValidationFn2).toHaveBeenCalled();
-        expect(validationResult).toBe(null);
+        expect(validationResult).toBeNull();
         done();
       });
     });
@@ -1845,13 +1717,10 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(mockValidationFn1).toHaveBeenCalled();
         expect(mockValidationFn2).not.toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.username).toEqual({
-          type: 'MY_VALIDATOR_A',
-          succeeded: false,
-          message: 'mymessageA',
+        expect(validationResult).toEqual({
+          username: 'mymessageA',
+          recordErrors: {},
         });
-        expect(validationResult.recordErrors).toEqual({});
         done();
       });
     });
@@ -1885,13 +1754,10 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(mockValidationFn1).toHaveBeenCalled();
         expect(mockValidationFn2).toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.username).toEqual({
-          type: 'MY_VALIDATOR_B',
-          succeeded: false,
-          message: 'mymessageB',
+        expect(validationResult).toEqual({
+          username: 'mymessageB',
+          recordErrors: {},
         });
-        expect(validationResult.recordErrors).toEqual({});
         done();
       });
     });
@@ -1925,13 +1791,10 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(mockValidationFn1).toHaveBeenCalled();
         expect(mockValidationFn2).not.toHaveBeenCalled();
-        expect(validationResult.succeeded).toBeFalsy();
-        expect(validationResult.username).toEqual({
-          type: 'MY_VALIDATOR_A',
-          succeeded: false,
-          message: 'mymessageA',
+        expect(validationResult).toEqual({
+          username: 'mymessageA',
+          recordErrors: {},
         });
-        expect(validationResult.recordErrors).toEqual({});
         done();
       });
     });
@@ -1978,7 +1841,7 @@ describe('FormValidation', () => {
       result.then(validationResult => {
         expect(myFieldValidation1).toHaveBeenCalled();
         expect(myFieldValidation2).toHaveBeenCalled();
-        expect(validationResult).toBe(null);
+        expect(validationResult).toBeNull();
         done();
       });
     });

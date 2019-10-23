@@ -1,9 +1,4 @@
-import {
-  ValidationSchema,
-  ValidationResult,
-  RecordValidationResult,
-  FormValidationResult,
-} from '@lemoncode/fonk';
+import { ValidationSchema } from '@lemoncode/fonk';
 
 /**
  * Main function to create an instance of FinalFormValidation. We could use `validateField`, `validateRecord` and/or `validateForm` to fire validations.
@@ -19,13 +14,13 @@ export function createFinalFormValidation(
 ): FinalFormValidation;
 
 interface FinalFormValidation {
-  validateField: (
-    fieldId: string,
-    value: any,
-    values?: any
-  ) => Promise<ValidationResult>;
+  validateField: (fieldId: string, value: any, values?: any) => Promise<string>;
 
-  validateRecord: (values: any) => Promise<RecordValidationResult>;
+  validateRecord: (values: any) => Promise<Record<string, string>>;
 
-  validateForm: (values: any) => Promise<any>;
+  validateForm: (
+    values: any
+  ) => Promise<
+    Record<string, string> | { recordErrors: Record<string, string> }
+  >;
 }
