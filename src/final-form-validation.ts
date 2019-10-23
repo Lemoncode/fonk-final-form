@@ -2,7 +2,6 @@ import {
   FormValidationExtended,
   ValidationResult,
   ValidationSchema,
-  RecordValidationResult,
   createFormValidation,
 } from '@lemoncode/fonk';
 
@@ -18,6 +17,17 @@ export class FinalFormValidation {
     this.formValidation = createFormValidation(validationSchema);
   }
 
+  private flatErrorsToMessages = (errors: {
+    [fieldId: string]: ValidationResult;
+  }): Record<string, string> =>
+    Object.keys(errors).reduce(
+      (dest, key) => ({
+        ...dest,
+        [key]: errors[key] && !errors[key].succeeded ? errors[key].message : '',
+      }),
+      {}
+    );
+
   public validateField(
     fieldId: string,
     value: any,
@@ -30,35 +40,28 @@ export class FinalFormValidation {
       );
   }
 
-  // TODO: Discuss, should we move this to plain null or simple array
-  // of messages just to be consistent with the rest of
-  // methods?
-  public validateRecord(values: any): Promise<RecordValidationResult> {
+  public validateRecord(values: any): Promise<Record<string, string>> {
     return this.formValidation
       .validateRecord(values)
       .then(validationResult =>
-        !validationResult.succeeded ? validationResult : null
+        !validationResult.succeeded
+          ? this.flatErrorsToMessages(validationResult.recordErrors)
+          : null
       );
   }
 
-  private fieldErrorsToFlatString(fieldErrors: {
-    [fieldId: string]: ValidationResult;
-  }): Record<string, string> {
-    return Object.keys(fieldErrors).reduce(
-      (dest, key) => ({
-        ...dest,
-        [key]: fieldErrors[key] ? fieldErrors[key].message : '',
-      }),
-      {}
-    );
-  }
-
-  public validateForm(values: any): Promise<any> {
+  public validateForm(
+    values: any
+  ): Promise<
+    Record<string, string> | { recordErrors: Record<string, string> }
+  > {
     return this.formValidation.validateForm(values).then(validationResult =>
       !validationResult.succeeded
         ? {
-            ...this.fieldErrorsToFlatString(validationResult.fieldErrors),
-            recordErrors: validationResult.recordErrors,
+            ...this.flatErrorsToMessages(validationResult.fieldErrors),
+            recordErrors: this.flatErrorsToMessages(
+              validationResult.recordErrors
+            ),
           }
         : null
     );
