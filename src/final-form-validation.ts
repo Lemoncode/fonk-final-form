@@ -22,14 +22,17 @@ export class FinalFormValidation {
     fieldId: string,
     value: any,
     values?: any
-  ): Promise<ValidationResult> {
+  ): Promise<string> {
     return this.formValidation
       .validateField(fieldId, value, values)
       .then(validationResult =>
-        !validationResult.succeeded ? validationResult : null
+        !validationResult.succeeded ? validationResult.message : null
       );
   }
 
+  // TODO: Discuss, should we move this to plain null or simple array
+  // of messages just to be consistent with the rest of
+  // methods?
   public validateRecord(values: any): Promise<RecordValidationResult> {
     return this.formValidation
       .validateRecord(values)
@@ -38,11 +41,23 @@ export class FinalFormValidation {
       );
   }
 
+  private fieldErrorsToFlatString(fieldErrors: {
+    [fieldId: string]: ValidationResult;
+  }): Record<string, string> {
+    return Object.keys(fieldErrors).reduce(
+      (dest, key) => ({
+        ...dest,
+        [key]: fieldErrors[key] ? fieldErrors[key].message : '',
+      }),
+      {}
+    );
+  }
+
   public validateForm(values: any): Promise<any> {
     return this.formValidation.validateForm(values).then(validationResult =>
       !validationResult.succeeded
         ? {
-            ...validationResult.fieldErrors,
+            ...this.fieldErrorsToFlatString(validationResult.fieldErrors),
             recordErrors: validationResult.recordErrors,
           }
         : null
