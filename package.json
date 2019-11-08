@@ -1,6 +1,6 @@
 {
   "name": "@lemoncode/fonk-final-form",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Fonk library for use with react-final-form",
   "main": "dist/@lemoncode/fonk-final-form.cjs.js",
   "module": "dist/@lemoncode/fonk-final-form.esm.js",
