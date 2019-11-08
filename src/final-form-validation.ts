@@ -1,5 +1,5 @@
 import {
-  FormValidationExtended,
+  FormValidation,
   ValidationResult,
   ValidationSchema,
   createFormValidation,
@@ -11,7 +11,7 @@ import {
   requirement.
    */
 export class FinalFormValidation {
-  formValidation: FormValidationExtended.FormValidation = null;
+  formValidation: FormValidation = null;
 
   constructor(validationSchema: ValidationSchema) {
     this.formValidation = createFormValidation(validationSchema);
@@ -69,6 +69,10 @@ export class FinalFormValidation {
           }
         : null
     );
+  }
+
+  public updateValidationSchema(validationSchema: ValidationSchema): void {
+    this.formValidation.updateValidationSchema(validationSchema);
   }
 }
 
