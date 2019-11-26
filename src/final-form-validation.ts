@@ -28,21 +28,21 @@ export class FinalFormValidation {
       {}
     );
 
-  public validateField(
+  public validateField = (
     fieldId: string,
     value: any,
     values?: any
-  ): Promise<string> {
+  ): Promise<string> => {
     return this.formValidation
       .validateField(fieldId, value, values)
       .then(validationResult =>
         !validationResult.succeeded ? validationResult.message : null
       );
-  }
+  };
 
-  public validateRecord(
+  public validateRecord = (
     values: any
-  ): Promise<{ recordErrors: Record<string, string> }> {
+  ): Promise<{ recordErrors: Record<string, string> }> => {
     return this.formValidation.validateRecord(values).then(validationResult =>
       !validationResult.succeeded
         ? {
@@ -52,13 +52,13 @@ export class FinalFormValidation {
           }
         : null
     );
-  }
+  };
 
-  public validateForm(
+  public validateForm = (
     values: any
   ): Promise<
     Record<string, string> | { recordErrors: Record<string, string> }
-  > {
+  > => {
     return this.formValidation.validateForm(values).then(validationResult =>
       !validationResult.succeeded
         ? {
@@ -69,11 +69,13 @@ export class FinalFormValidation {
           }
         : null
     );
-  }
+  };
 
-  public updateValidationSchema(validationSchema: ValidationSchema): void {
+  public updateValidationSchema = (
+    validationSchema: ValidationSchema
+  ): void => {
     this.formValidation.updateValidationSchema(validationSchema);
-  }
+  };
 }
 
 export const createFinalFormValidation = (
