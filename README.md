@@ -6,6 +6,8 @@
 
 This package serves as the entry point to the React Final Form library. It is intended to be paired with the generic Fonk package, which is shipped as to npm.
 
+Start by reading this [post (Final Form + Fonk)](https://www.basefactor.com/react-final-form-validation-fonk)
+
 Check our [Fonk Documentation site](https://lemoncode.github.io/fonk-doc/) and [React-Final-Form](https://lemoncode.github.io/fonk-doc/react-final-form) section.
 
 # About Basefactor + Lemoncode
