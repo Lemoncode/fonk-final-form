@@ -614,7 +614,7 @@ function isIndex(value, length) {
   return (
     !!length &&
     (typeof value == 'number' || reIsUint.test(value)) &&
-    (value > -1 && value % 1 == 0 && value < length)
+    value > -1 && value % 1 == 0 && value < length
   );
 }
 
