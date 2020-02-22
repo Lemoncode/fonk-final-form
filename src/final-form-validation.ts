@@ -3,8 +3,10 @@ import {
   ValidationResult,
   ValidationSchema,
   createFormValidation,
+  FormValidationResult,
 } from '@lemoncode/fonk';
 
+import { set } from './helpers';
 /*
   React Final form expects a validator to return null or undefined
   when  a given validation succeeds, adaptor to fulfill this
@@ -17,16 +19,19 @@ export class FinalFormValidation {
     this.formValidation = createFormValidation(validationSchema);
   }
 
-  private flatErrorsToMessages = (errors: {
+  private mapErrorsToFinalFormErrorMessageStructure = (errors: {
     [fieldId: string]: ValidationResult;
-  }): Record<string, string> =>
-    Object.keys(errors).reduce(
-      (dest, key) => ({
-        ...dest,
-        [key]: errors[key] && !errors[key].succeeded ? errors[key].message : '',
-      }),
-      {}
-    );
+  }): Record<string, string> => {
+    const finalFormErrors = {};
+
+    for (const key of Object.keys(errors)) {
+      const errorMessage =
+        errors[key] && !errors[key].succeeded ? errors[key].message : '';
+      set(finalFormErrors, key, errorMessage);
+    }
+
+    return finalFormErrors;
+  };
 
   public validateField = (
     fieldId: string,
@@ -47,11 +52,32 @@ export class FinalFormValidation {
       !validationResult.succeeded
         ? {
             recordErrors: {
-              ...this.flatErrorsToMessages(validationResult.recordErrors),
+              ...this.mapErrorsToFinalFormErrorMessageStructure(
+                validationResult.recordErrors
+              ),
             },
           }
         : null
     );
+  };
+
+  private buildErrors = (validationResult: FormValidationResult) => {
+    let errors = {};
+
+    errors = {
+      ...this.mapErrorsToFinalFormErrorMessageStructure(
+        validationResult.fieldErrors
+      ),
+    };
+
+    errors = {
+      ...errors,
+      recordErrors: this.mapErrorsToFinalFormErrorMessageStructure(
+        validationResult.recordErrors
+      ),
+    };
+
+    return errors;
   };
 
   public validateForm = (
@@ -59,16 +85,11 @@ export class FinalFormValidation {
   ): Promise<
     Record<string, string> | { recordErrors: Record<string, string> }
   > => {
-    return this.formValidation.validateForm(values).then(validationResult =>
-      !validationResult.succeeded
-        ? {
-            ...this.flatErrorsToMessages(validationResult.fieldErrors),
-            recordErrors: this.flatErrorsToMessages(
-              validationResult.recordErrors
-            ),
-          }
-        : null
-    );
+    return this.formValidation
+      .validateForm(values)
+      .then(validationResult =>
+        !validationResult.succeeded ? this.buildErrors(validationResult) : null
+      );
   };
 
   public updateValidationSchema = (
