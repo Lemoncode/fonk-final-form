@@ -16,7 +16,7 @@
     "lint": "eslint src --ext .ts ",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest -c ./config/test/jest.json --verbose",
-    "test:watch": "jest -c ./config/test/jest.json --verbose --watchAll -i",
+    "test:watch": "npm test -- --watchAll -i --no-cache",
     "test:size": "bundlesize",
     "deploy": "npm run validate && np",
     "deploy:beta": "npm run validate && np --tag=beta --any-branch"

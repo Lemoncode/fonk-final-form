@@ -15,10 +15,12 @@ describe('FormValidation', () => {
     when calling createFinalFormValidation
     `, () => {
     // Arrange
-    const validationSchema: ValidationSchema = {}; // Act
+    const validationSchema: ValidationSchema = {};
 
-    const formValidation = createFinalFormValidation(validationSchema); // Assert
+    // Act
+    const formValidation = createFinalFormValidation(validationSchema);
 
+    // Assert
     expect(formValidation).toBeInstanceOf(FinalFormValidation);
   });
 
@@ -38,11 +40,14 @@ describe('FormValidation', () => {
         field: {
           username: [mockValidationFn],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateField('username', 'whatever'); // Assert
+      const result = formValidation.validateField('username', 'whatever');
 
+      // Assert
       result.then(validationResult => {
         expect(validationResult).toBe('mymessage');
         expect(mockValidationFn).toHaveBeenCalled();
@@ -65,11 +70,14 @@ describe('FormValidation', () => {
         field: {
           username: [mockValidationFn],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateField('username', 'whatever'); // Assert
+      const result = formValidation.validateField('username', 'whatever');
 
+      // Assert
       result.then(validationResult => {
         expect(validationResult).toBe('mymessage');
         expect(mockValidationFn).toHaveBeenCalled();
@@ -99,11 +107,14 @@ describe('FormValidation', () => {
             },
           ],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateField('username', 'whatever'); // Assert
+      const result = formValidation.validateField('username', 'whatever');
 
+      // Assert
       result.then(validationResult => {
         expect(validationResult).toBe('myoverriddenmessage');
         expect(mockValidationFn).toHaveBeenCalled();
@@ -134,11 +145,14 @@ describe('FormValidation', () => {
             },
           ],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateField('username', 'whatever'); // Assert
+      const result = formValidation.validateField('username', 'whatever');
 
+      // Assert
       result.then(validationResult => {
         expect(validationResult).toBe('myoverriddenmessage');
         expect(mockValidationFn).toHaveBeenCalled();
@@ -169,15 +183,18 @@ describe('FormValidation', () => {
             },
           ],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
       const result = formValidation.validateField(
         'username',
         'whatever',
         'test-values'
-      ); // Assert
+      );
 
+      // Assert
       result.then(validationResult => {
         expect(validationResult).toBe(
           'whatever myoverriddenmessage custom-arg test-values'
@@ -218,11 +235,14 @@ describe('FormValidation', () => {
             },
           ],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateField('username', 'whatever'); // Assert
+      const result = formValidation.validateField('username', 'whatever');
 
+      // Assert
       result.then(validationResult => {
         expect(validationResult).toBe('received custom args fail true');
         expect(validator).toHaveBeenCalled();
@@ -261,11 +281,14 @@ describe('FormValidation', () => {
             },
           ],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateField('username', 'whatever'); // Assert
+      const result = formValidation.validateField('username', 'whatever');
 
+      // Assert
       result.then(validationResult => {
         expect(validationResult).toBeNull();
         expect(validator).toHaveBeenCalled();
@@ -293,11 +316,14 @@ describe('FormValidation', () => {
         field: {
           username: [mockValidationFn1, mockValidationFn2],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateField('username', 'whatever'); // Assert
+      const result = formValidation.validateField('username', 'whatever');
 
+      // Assert
       result.then(validationResult => {
         expect(validationResult).toBeNull();
         expect(mockValidationFn1).toHaveBeenCalled();
@@ -326,11 +352,14 @@ describe('FormValidation', () => {
         field: {
           username: [mockValidationFn1, mockValidationFn2],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateField('username', 'whatever'); // Assert
+      const result = formValidation.validateField('username', 'whatever');
 
+      // Assert
       result.then(validationResult => {
         expect(validationResult).toBe('mymessageA');
         expect(mockValidationFn1).toHaveBeenCalled();
@@ -359,11 +388,14 @@ describe('FormValidation', () => {
         field: {
           username: [mockValidationFn1, mockValidationFn2],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateField('username', 'whatever'); // Assert
+      const result = formValidation.validateField('username', 'whatever');
 
+      // Assert
       result.then(validationResult => {
         expect(validationResult).toBe('mymessageB');
         expect(mockValidationFn1).toHaveBeenCalled();
@@ -392,11 +424,14 @@ describe('FormValidation', () => {
         field: {
           username: [mockValidationFn1, mockValidationFn2],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateField('username', 'whatever'); // Assert
+      const result = formValidation.validateField('username', 'whatever');
 
+      // Assert
       result.then(validationResult => {
         expect(validationResult).toBe('mymessageA');
         expect(mockValidationFn1).toHaveBeenCalled();
@@ -419,11 +454,14 @@ describe('FormValidation', () => {
         field: {
           'nested.field': [mockValidationFn],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateField('nested.field', 'whatever'); // Assert
+      const result = formValidation.validateField('nested.field', 'whatever');
 
+      // Assert
       result.then(validationResult => {
         expect(validationResult).toBe('mymessageA');
         expect(mockValidationFn).toHaveBeenCalled();
@@ -445,14 +483,17 @@ describe('FormValidation', () => {
         field: {
           'this-is-a-nested.field': [mockValidationFn],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
       const result = formValidation.validateField(
         'this-is-a-nested.field',
         'whatever'
-      ); // Assert
+      );
 
+      // Assert
       result.then(validationResult => {
         expect(validationResult).toBe('mymessageA');
         expect(mockValidationFn).toHaveBeenCalled();
@@ -480,11 +521,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateRecord(values); // Assert
+      const result = formValidation.validateRecord(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
@@ -514,11 +558,13 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
 
+      // Act
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateRecord(values); // Assert
+      const result = formValidation.validateRecord(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
@@ -551,11 +597,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateRecord(values); // Assert
+      const result = formValidation.validateRecord(values);
 
+      // Assert
       result.then(validationResult => {
         expect(validationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
@@ -587,11 +636,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateRecord(values); // Assert
+      const result = formValidation.validateRecord(values);
 
+      // Assert
       result.then(validationResult => {
         expect(validationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
@@ -629,11 +681,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateRecord(values); // Assert
+      const result = formValidation.validateRecord(values);
 
+      // Assert
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).not.toHaveBeenCalled();
@@ -672,11 +727,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateRecord(values); // Assert
+      const result = formValidation.validateRecord(values);
 
+      // Assert
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).toHaveBeenCalled();
@@ -715,11 +773,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateRecord(values); // Assert
+      const result = formValidation.validateRecord(values);
 
+      // Assert
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).not.toHaveBeenCalled();
@@ -758,11 +819,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateRecord(values); // Assert
+      const result = formValidation.validateRecord(values);
 
+      // Assert
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).toHaveBeenCalled();
@@ -798,11 +862,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateRecord(values); // Assert
+      const result = formValidation.validateRecord(values);
 
+      // Assert
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).toHaveBeenCalled();
@@ -836,11 +903,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
@@ -870,11 +940,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
@@ -907,11 +980,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(validationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
@@ -943,11 +1019,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(validationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
@@ -985,11 +1064,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).not.toHaveBeenCalled();
@@ -1028,11 +1110,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).toHaveBeenCalled();
@@ -1071,11 +1156,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).not.toHaveBeenCalled();
@@ -1114,11 +1202,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).toHaveBeenCalled();
@@ -1154,11 +1245,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(validationFn1).toHaveBeenCalled();
         expect(validationFn2).toHaveBeenCalled();
@@ -1202,11 +1296,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(myFieldValidation).toHaveBeenCalled();
         expect(myRecordValidation).toHaveBeenCalled();
@@ -1249,11 +1346,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(myFieldValidation).toHaveBeenCalled();
         expect(myRecordValidation).toHaveBeenCalled();
@@ -1297,11 +1397,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(myFieldValidation).toHaveBeenCalled();
         expect(myRecordValidation).toHaveBeenCalled();
@@ -1345,11 +1448,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = { username: 'test-value' }; // Act
+      const values = { username: 'test-value' };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(myFieldValidation).toHaveBeenCalled();
         expect(myRecordValidation).toHaveBeenCalled();
@@ -1385,11 +1491,14 @@ describe('FormValidation', () => {
         },
       };
 
-      const values = {}; // Act
+      const values = {};
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(myFieldValidation1).toHaveBeenCalled();
         expect(myFieldValidation2).toHaveBeenCalled();
@@ -1413,12 +1522,15 @@ describe('FormValidation', () => {
         field: {
           username: [mockValidationFn],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
       const values = {};
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
@@ -1444,12 +1556,15 @@ describe('FormValidation', () => {
         field: {
           username: [mockValidationFn],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
       const values = {};
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
@@ -1482,12 +1597,15 @@ describe('FormValidation', () => {
             },
           ],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
       const values = {};
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
@@ -1521,12 +1639,15 @@ describe('FormValidation', () => {
             },
           ],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
       const values = {};
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
@@ -1562,12 +1683,15 @@ describe('FormValidation', () => {
             },
           ],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
       const values = { username: 'whatever' };
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
@@ -1610,12 +1734,15 @@ describe('FormValidation', () => {
             },
           ],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
       const values = {};
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
         expect(validationResult).toEqual({
@@ -1657,12 +1784,15 @@ describe('FormValidation', () => {
             },
           ],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
       const values = {};
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn).toHaveBeenCalled();
         expect(validationResult).toBeNull();
@@ -1690,12 +1820,15 @@ describe('FormValidation', () => {
         field: {
           username: [mockValidationFn1, mockValidationFn2],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
       const values = {};
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn1).toHaveBeenCalled();
         expect(mockValidationFn2).toHaveBeenCalled();
@@ -1724,12 +1857,15 @@ describe('FormValidation', () => {
         field: {
           username: [mockValidationFn1, mockValidationFn2],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
       const values = {};
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn1).toHaveBeenCalled();
         expect(mockValidationFn2).not.toHaveBeenCalled();
@@ -1761,12 +1897,15 @@ describe('FormValidation', () => {
         field: {
           username: [mockValidationFn1, mockValidationFn2],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
       const values = {};
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn1).toHaveBeenCalled();
         expect(mockValidationFn2).toHaveBeenCalled();
@@ -1798,12 +1937,15 @@ describe('FormValidation', () => {
         field: {
           username: [mockValidationFn1, mockValidationFn2],
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
       const values = {};
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(mockValidationFn1).toHaveBeenCalled();
         expect(mockValidationFn2).not.toHaveBeenCalled();
@@ -1815,8 +1957,7 @@ describe('FormValidation', () => {
       });
     });
 
-    it(`#Spec 26: should fail form validation, and return one field validation result
-      and form validation result
+    it(`#Spec 26: should success form validation
       when adding two fields validation that succeed with nested fields with kebap case
       `, done => {
       // Arrange
@@ -1824,14 +1965,14 @@ describe('FormValidation', () => {
         ({ value }) => ({
           type: 'MY_TYPE_A',
           succeeded: true,
-          message: `mymessageA ${value}`,
+          message: `mymessageA ${value}`,
         })
       );
       const myFieldValidation2: FieldValidationFunctionSync = jest.fn(
         ({ value }) => ({
           type: 'MY_TYPE_B',
           succeeded: true,
-          message: `mymessageB ${value}`,
+          message: `mymessageB ${value}`,
         })
       );
 
@@ -1849,15 +1990,73 @@ describe('FormValidation', () => {
         nested: {
           'field-2': 'value2',
         },
-      }; // Act
+      };
+
+      // Act
 
       const formValidation = createFinalFormValidation(validationSchema);
-      const result = formValidation.validateForm(values); // Assert
+      const result = formValidation.validateForm(values);
 
+      // Assert
       result.then(validationResult => {
         expect(myFieldValidation1).toHaveBeenCalled();
         expect(myFieldValidation2).toHaveBeenCalled();
         expect(validationResult).toBeNull();
+        done();
+      });
+    });
+
+    it(`#Spec 27: should fail form validation
+      when adding two fields validation that succeed and fail with nested fields with kebap case
+      `, done => {
+      // Arrange
+      const myFieldValidation1: FieldValidationFunctionSync = jest.fn(
+        ({ value }) => ({
+          type: 'MY_TYPE_A',
+          succeeded: true,
+          message: `mymessageA ${value}`,
+        })
+      );
+      const myFieldValidation2: FieldValidationFunctionSync = jest.fn(
+        ({ value }) => ({
+          type: 'MY_TYPE_B',
+          succeeded: false,
+          message: `mymessageB ${value}`,
+        })
+      );
+
+      const validationSchema: ValidationSchema = {
+        field: {
+          'this-is-a-nested.field1': [myFieldValidation1],
+          'nested.field-2': [myFieldValidation2],
+        },
+      };
+
+      const values = {
+        'this-is-a-nested': {
+          field1: 'value1',
+        },
+        nested: {
+          'field-2': 'value2',
+        },
+      };
+
+      // Act
+
+      const formValidation = createFinalFormValidation(validationSchema);
+      const result = formValidation.validateForm(values);
+
+      // Assert
+      result.then(validationResult => {
+        expect(myFieldValidation1).toHaveBeenCalled();
+        expect(myFieldValidation2).toHaveBeenCalled();
+        expect(validationResult).toEqual({
+          nested: { 'field-2': 'mymessageB value2' },
+          'this-is-a-nested': {
+            field1: '',
+          },
+          recordErrors: {},
+        });
         done();
       });
     });
